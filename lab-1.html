@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webpage Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        form {
+            width: 300px;
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-bottom: 5px;
+        }
+        input, select, textarea {
+            margin-bottom: 15px;
+            padding: 8px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h2>Student Information Form</h2>
+    <form id="infoForm" onsubmit="displayValues(event)">
+        <label for="firstname">First Name:</label>
+        <input type="text" id="firstname" name="firstname" required>
+
+        <label for="lastname">Last Name:</label>
+        <input type="text" id="lastname" name="lastname" required>
+
+        <label for="faculty">Faculty:</label>
+        <select id="faculty" name="faculty" required>
+            <option value="">Select Faculty</option>
+            <option value="Science">Science</option>
+            <option value="Arts">Arts</option>
+            <option value="Commerce">Commerce</option>
+        </select>
+
+        <label for="batch">Batch:</label>
+        <input type="text" id="batch" name="batch" required>
+
+        <label for="mobile">Mobile No:</label>
+        <input type="tel" id="mobile" name="mobile" required>
+
+        <label for="hobby">Hobby:</label>
+        <textarea id="hobby" name="hobby" rows="3"></textarea>
+
+        <button type="submit">Submit</button>
+        <button type="reset">Cancel</button>
+    </form>
+
+    <script>
+        function displayValues(event) {
+            event.preventDefault();
+            
+            const firstname = document.getElementById("firstname").value;
+            const lastname = document.getElementById("lastname").value;
+            const faculty = document.getElementById("faculty").value;
+            const batch = document.getElementById("batch").value;
+            const mobile = document.getElementById("mobile").value;
+            const hobby = document.getElementById("hobby").value;
+
+            // Open a new window and display the entered information
+            const newWindow = window.open("", "_blank");
+            newWindow.document.write(` 
+                <h2>Entered Information</h2>
+                <p><strong>First Name:</strong> ${firstname}</p>
+                <p><strong>Last Name:</strong> ${lastname}</p>
+                <p><strong>Faculty:</strong> ${faculty}</p>
+                <p><strong>Batch:</strong> ${batch}</p>
+                <p><strong>Mobile No:</strong> ${mobile}</p>
+                <p><strong>Hobby:</strong> ${hobby}</p>
+            `);
+
+            // Display success message
+            alert("Thank you for registering. Your form has been registered successfully.");
+        }
+    </script>
+</body>
+</html>
